@@ -13,14 +13,39 @@ if (isset($_POST['login'])) {
         header("Location: welcome.php");
         exit();
     } else {
-        echo "wrong username or password";
+        echo "Wrong username or password";
     }
 }
 ?>
-<h1> Login </h1>
-<form method="post" action="login.php">
-    username: <input type="text" size="180" name="username" required><br>
-    password: <input type="password"  name="password" required><br>
-    <input type="submit" name="login" value="enter">
-</form>
-<a href="register.php">register</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        .login-form { max-width: 300px; margin: 20px auto; }
+        .form-group { margin-bottom: 15px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <div class="login-form">
+        <h1>Login</h1>
+        <?php if (!empty($error_message)): ?>
+            <p class="error"><?= htmlspecialchars($error_message) ?></p>
+        <?php endif; ?>       
+        <form method="post" action="login.php">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>            
+            <button type="submit" name="login">Login</button>
+        </form>        
+        <p>Don`t have an account yet? <a href="register.php">Registration</a></p>
+    </div>
+</body>
+</html>
